@@ -14,3 +14,5 @@ Syntax with single find-replace pair:
 drush scr /path/to/drupal_global_replacer.php --execute search-string replacement-string
 
 --execute will execute the string replacement.  Otherwise, the script just tells you which nodes and fields contain the search string.
+
+@todo: Perform search and replace on custom blocks and views.
