@@ -14,10 +14,12 @@ Note that file.php should contain an array named $patterns with search strings a
 Syntax with single find-replace pair:
 drush scr /path/to/drupal_global_replacer.php --execute search-string replacement-string
 
+@todo:  make this work for custom blocks; doxygen commenting.
+
 */
 
 
-
+// Let's get our arguments set
 if (drush_get_option('file')) {
   $file = drush_get_option('file');
   if (file_exists($file)) {
@@ -39,15 +41,17 @@ if (drush_get_option('file')) {
   }
 }
 
+// Let's get our parameters set
 $execute = (strlen(drush_get_option('execute'))) ? TRUE : FALSE;
 $debug = (strlen(drush_get_option('debug'))) ? TRUE : FALSE;
 
+
 foreach ($patterns AS $search => $replace) {
-  _check_relative_links($search, $replace, $execute);
+  _run_queries($search, $replace, $execute);
 }
 
 
-function _check_relative_links($search, $replace, $execute = FALSE) {
+function _run_queries($search, $replace, $execute = FALSE) {
 
   // Preliminary list of field_types to check
   $field_types = array('text_long','link_field','text');
